@@ -11,13 +11,13 @@ Dataset used:
 - Data collected manually by watching the games (available here for download).
 
 The project is divided in four parts:
-- Importing AWS S3 dataset
+1. Importing AWS S3 dataset
   - You credentials to access this data
-- Importing NBA API dataset
+2. Importing NBA API dataset
   - Install nba_api
-- Importing mapped screens 
+3. Importing mapped screens 
   - Import .xlsx filte from this repository (screens_mapping.xlsx)
-- Data cleaning/manipulation/evaluation
+4. Data cleaning/manipulation/evaluation
 
 Next steps:
 - Map other games' screens
