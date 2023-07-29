@@ -1,8 +1,6 @@
-Hackathon: Women in Sports Data 2023
-<br>
-<br>Author: Isabella Couto Carlos
-<br>Date: 7/29/23
-<br>
+# Hackathon: Women in Sports Data 2023
+# Author: Isabella Couto Carlos
+# Date: 7/29/23
 
 # Importing libraries
 
