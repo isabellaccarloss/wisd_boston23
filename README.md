@@ -18,3 +18,7 @@ The project is divided in four parts:
 - Importing mapped screens 
   - Import .xlsx filte from this repository
 - Data cleaning/manipulation/evaluation
+
+Next steps:
+- Map other games screens
+- Track the coverage behaviour
