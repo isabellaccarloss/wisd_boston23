@@ -1,3 +1,9 @@
+Hackathon: Women in Sports Data 2023
+<br>
+<br>Author: Isabella Couto Carlos
+<br>Date: 7/29/23
+<br>
+
 # Importing libraries
 
 %pip install boto3
@@ -11,10 +17,10 @@ import json
 
 # Accessing AWS 3
 
-# Replace the X with your credentials
+# Replace with your credentials
 session = boto3.Session(
-    aws_access_key_id='XXXXXXXXXXXXXX',
-    aws_secret_access_key='XXXXXXXXXXXXXX'
+    aws_access_key_id='AKIA6KMLMMGZJ6CNEF5X',
+    aws_secret_access_key='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'
 )
 
 s3_client = session.client('s3')
@@ -23,7 +29,9 @@ response = s3_client.list_objects(Bucket='sportradar-wisd-data')
 for obj in response['Contents']:
     print(obj['Key'])
 
-# Opening events
+# Importing data
+
+## Events
 
 keyname = "games/0042100301/0042100301_events.jsonl"
 
@@ -168,7 +176,7 @@ events.columns
 # Saving events table (optional)
 #events.to_csv(r"events.csv", index=False)
 
-# Opening tracking
+## Tracking
 
 keyname = "games/0042100301/0042100301_tracking.jsonl"
 
@@ -348,9 +356,9 @@ tracking = tracking.rename(columns={'xyz1': 'home_xyz1',
                                     })
 
 # Saving tacking table (optional)
-#tracking.to_csv(r"tracking.csv", index=False)
+tracking.to_csv(r"tracking.csv", index=False)
 
-# Opening games
+## Games
 
 keyname = "metadata/games.json"
 games = [json.loads(line) for line in s3_client.get_object(Bucket='sportradar-wisd-data', Key=keyname)['Body'].read().decode('utf-8').strip().split('\n')]
@@ -383,7 +391,7 @@ games2 = games[(games['nbaId'] == '0042100301') |
 # Saving games table (optional)
 #games2.to_csv(r"games2.csv", index=False)
 
-# Opening players
+## Players
 
 keyname = "metadata/players.json"
 players = [json.loads(line) for line in s3_client.get_object(Bucket='sportradar-wisd-data', Key=keyname)['Body'].read().decode('utf-8').strip().split('\n')]
@@ -397,7 +405,7 @@ players.head()
 # Saving players table (optional)
 #players.to_csv(r"players.csv", index=False)
 
-# Opening teams
+## Teams
 
 keyname = "metadata/teams.json"
 teams = [json.loads(line) for line in s3_client.get_object(Bucket='sportradar-wisd-data', Key=keyname)['Body'].read().decode('utf-8').strip().split('\n')]
@@ -410,3 +418,100 @@ teams.head()
 
 # Saving teams table (optional)
 #teams.to_csv(r"teams.csv", index=False)
+
+# Cleaning tables
+
+## Tracking
+
+# Opening saved table
+tracking = pd.read_csv(r"tracking.csv")
+
+tracking.info()
+
+tracking[['home_x1', 'home_y1','home_z1']] = tracking['home_xyz1'].str.split(', ', expand=True)
+tracking[['home_x2', 'home_y2','home_z2']] = tracking['home_xyz2'].str.split(', ', expand=True)
+tracking[['home_x3', 'home_y3','home_z3']] = tracking['home_xyz3'].str.split(', ', expand=True)
+tracking[['home_x4', 'home_y4','home_z4']] = tracking['home_xyz4'].str.split(', ', expand=True)
+tracking[['home_x5', 'home_y5','home_z5']] = tracking['home_xyz5'].str.split(', ', expand=True)
+
+tracking[['away_x1', 'away_y1','away_z1']] = tracking['away_xyz1'].str.split(', ', expand=True)
+tracking[['away_x2', 'away_y2','away_z2']] = tracking['away_xyz2'].str.split(', ', expand=True)
+tracking[['away_x3', 'away_y3','away_z3']] = tracking['away_xyz3'].str.split(', ', expand=True)
+tracking[['away_x4', 'away_y4','away_z4']] = tracking['away_xyz4'].str.split(', ', expand=True)
+tracking[['away_x5', 'away_y5','away_z5']] = tracking['away_xyz5'].str.split(', ', expand=True)
+
+tracking.head()
+
+tracking['home_x1'] = tracking['home_x1'].str.split('[').str[-1]
+tracking['home_z1'] = tracking['home_z1'].str.split(']').str[0]
+tracking['home_x2'] = tracking['home_x2'].str.split('[').str[-1]
+tracking['home_z2'] = tracking['home_z2'].str.split(']').str[0]
+tracking['home_x3'] = tracking['home_x3'].str.split('[').str[-1]
+tracking['home_z3'] = tracking['home_z3'].str.split(']').str[0]
+tracking['home_x4'] = tracking['home_x4'].str.split('[').str[-1]
+tracking['home_z4'] = tracking['home_z4'].str.split(']').str[0]
+tracking['home_x5'] = tracking['home_x5'].str.split('[').str[-1]
+tracking['home_z5'] = tracking['home_z5'].str.split(']').str[0]
+
+tracking['away_x1'] = tracking['away_x1'].str.split('[').str[-1]
+tracking['away_z1'] = tracking['away_z1'].str.split(']').str[0]
+tracking['away_x2'] = tracking['away_x2'].str.split('[').str[-1]
+tracking['away_z2'] = tracking['away_z2'].str.split(']').str[0]
+tracking['away_x3'] = tracking['away_x3'].str.split('[').str[-1]
+tracking['away_z3'] = tracking['away_z3'].str.split(']').str[0]
+tracking['away_x4'] = tracking['away_x4'].str.split('[').str[-1]
+tracking['away_z4'] = tracking['away_z4'].str.split(']').str[0]
+tracking['away_x5'] = tracking['away_x5'].str.split('[').str[-1]
+tracking['away_z5'] = tracking['away_z5'].str.split(']').str[0]
+
+tracking.head()
+
+tracking['home_x1'] = tracking['home_x1'].astype(float)
+tracking['home_z1'] = tracking['home_z1'].astype(float)
+tracking['home_x2'] = tracking['home_x2'].astype(float)
+tracking['home_z2'] = tracking['home_z2'].astype(float)
+tracking['home_x3'] = tracking['home_x3'].astype(float)
+tracking['home_z3'] = tracking['home_z3'].astype(float)
+tracking['home_x4'] = tracking['home_x4'].astype(float)
+tracking['home_z4'] = tracking['home_z4'].astype(float)
+tracking['home_x5'] = tracking['home_x5'].astype(float)
+tracking['home_z5'] = tracking['home_z5'].astype(float)
+
+tracking['away_x1'] = tracking['away_x1'].astype(float)
+tracking['away_z1'] = tracking['away_z1'].astype(float)
+tracking['away_x2'] = tracking['away_x2'].astype(float)
+tracking['away_z2'] = tracking['away_z2'].astype(float)
+tracking['away_x3'] = tracking['away_x3'].astype(float)
+tracking['away_z3'] = tracking['away_z3'].astype(float)
+tracking['away_x4'] = tracking['away_x4'].astype(float)
+tracking['away_z4'] = tracking['away_z4'].astype(float)
+tracking['away_x5'] = tracking['away_x5'].astype(float)
+tracking['away_z5'] = tracking['away_z5'].astype(float)
+
+tracking['away_y1'] = tracking['away_y1'].astype(float)
+tracking['away_y2'] = tracking['away_y2'].astype(float)
+tracking['away_y3'] = tracking['away_y3'].astype(float)
+tracking['away_y4'] = tracking['away_y4'].astype(float)
+tracking['away_y5'] = tracking['away_y5'].astype(float)
+tracking['home_y1'] = tracking['home_y1'].astype(float)
+tracking['home_y2'] = tracking['home_y2'].astype(float)
+tracking['home_y3'] = tracking['home_y3'].astype(float)
+tracking['home_y4'] = tracking['home_y4'].astype(float)
+tracking['home_y5'] = tracking['home_y5'].astype(float)
+
+tracking[['ball_x', 'ball_y','ball_z']] = tracking['ball'].str.split(', ', expand=True)
+
+tracking['ball_z'] = tracking['ball_z'].str.split(']').str[0]
+tracking['ball_x'] = tracking['ball_x'].str.split('[').str[-1]
+
+tracking['ball_x'] = tracking['ball_x'].astype(float)
+tracking['ball_z'] = tracking['ball_z'].astype(float)
+
+tracking.columns
+
+columns_to_drop = ['ball', 'home_xyz1', 'home_xyz2', 'home_xyz3', 'home_xyz4', 'home_xyz5',
+                  'away_xyz1', 'away_xyz2', 'away_xyz3', 'away_xyz4', 'away_xyz5',]
+tracking.drop(columns_to_drop, axis=1, inplace=True)
+
+# Saving tacking table (optional)
+#tracking.to_csv(r"trackings.csv", index=False)
