@@ -20,7 +20,7 @@ The project is divided in four parts:
 4. Data cleaning/manipulation/evaluation
 
 You need to run the files in the same order:
-1. AWS_data_import.py (data_import folder)
+1. aws_data_import.py (data_import_py folder)
 2. 
 
 Next steps:
