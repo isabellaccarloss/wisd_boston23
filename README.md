@@ -16,7 +16,7 @@ The project is divided in four parts:
 - Importing NBA API dataset
   - Install nba_api
 - Importing mapped screens 
-  - Import .xlsx filte from this repository
+  - Import .xlsx filte from this repository (screens_mapping.xlsx)
 - Data cleaning/manipulation/evaluation
 
 Next steps:
