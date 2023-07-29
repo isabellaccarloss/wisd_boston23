@@ -11,13 +11,13 @@ Dataset used:
 - Data collected manually by watching the games (available here for download).
 
 The project is divided in four parts:
-1. Importing AWS S3 dataset
+1. Importing/cleaning AWS S3 dataset
   - You credentials to access this data
 2. Importing NBA API dataset
   - Install nba_api
 3. Importing mapped screens 
   - Import .xlsx file from this repository (screens_mapping.xlsx)
-4. Data cleaning/manipulation/evaluation
+4. Data manipulation/evaluation
 
 You need to run the files in the same order:
 1. aws_data_import.py (data_import_py folder)
