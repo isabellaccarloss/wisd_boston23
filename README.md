@@ -5,7 +5,7 @@ Hackathon Project Women in Sports Data 2023 - Team Boston23
 
 > The analysis of screens and their outcomes can provide coaches and staff with information about other teams’ and their own screens behavior/results. This can be used to improve approaches and tactics.
 
-> Dataset used:
+Dataset used:
 >> Data provided by the Hackathon organization: AWS S3 bucket: sportradar-wisd-data.
 >> Imported data through NBA API.
 >> Data collected manually by watching the games (available here for download).
