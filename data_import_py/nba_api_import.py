@@ -1,10 +1,8 @@
-Hackathon: Women in Sports Data 2023
-<br>
-<br>Author: Isabella Couto Carlos
-<br>Date: 7/29/23
-<br>
+# Hackathon: Women in Sports Data 2023
+# Author: Isabella Couto Carlos
+# Date: 7/29/23
 
-Reference: https://github.com/swar/nba_api/tree/master/src/nba_api/stats/endpoints
+# Reference: https://github.com/swar/nba_api/tree/master/src/nba_api/stats/endpoints
 
 # Importing libraries
 
