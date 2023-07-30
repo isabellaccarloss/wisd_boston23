@@ -5,25 +5,37 @@ Hackathon Project Women in Sports Data 2023 - Team Boston23
 
 - The analysis of screens and their outcomes can provide coaches and staff with information about other teams’ and their own screens behavior/results. This can be used to improve approaches and tactics.
 
+- The final product is a Python code containing analysis and a dashboard.
+
+- To access the data that are the input for the product, you need to run the importing/cleaning code.
+  - Outputs: two csv files. 
+
+   
 Dataset used:
 - Data provided by the Hackathon organization: AWS S3 bucket: sportradar-wisd-data.
 - Imported data through NBA API.
-- Data collected manually by watching the games (available here for download).
+- Data collected manually by watching the games (available here).
 
-The project is divided in four parts:
-1. Importing/cleaning AWS S3 dataset
-  - You credentials to access this data
-2. Importing NBA API dataset
-  - Install nba_api
-3. Downloading mapped screens 
-  - Download .xlsx file from this repository (screens_mapping.xlsx)
-4. Data manipulation/evaluation
+The project is divided in two codes:
+1. Importing/cleaning/manipulating the data (importing_data.py).
+2. Analysis and dashboard (analysis_report.py).
 
-You need to run the files in the same order (data_import_py folder):
-1. aws_data_import.py
-2. nba_api_import.py
-3. data_screen_analysis
-> Be aware that if you are running the codes separately, you need to download and upload each table that are marked as opitional.
+
+What do you need in each file:
+1. importing_data.py
+  - Credentials to access AWS S3 dataset
+  - Install packages:
+    - boto3
+    - jsonlines
+    - jsonlines pandas
+    - nba_api
+2. analysis_report.py
+  - Install packages:
+    - dash
+  - two tables generated in the previous code:
+    - screenplus5_1
+    - screenplus5_2
+
 
 Next steps:
 - Map other games' screens
