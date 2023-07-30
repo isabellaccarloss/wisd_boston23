@@ -3,7 +3,7 @@ Hackathon Project Women in Sports Data 2023 - Team Boston23
 
 - This project aims to analyze screens and their impact on the games evaluated.
 
-- The analysis of screens and their outcomes can provide coaches and staff with information about other teams’ and their own screens behavior/results. This can be used to improve approaches and tactics.
+- The analysis of screens and their outcomes can provide coaches and staff with information about other teams’ and their own's screens behavior/results. This can be used to improve approaches and tactics.
 
 - The final product is a Python code containing analysis and a dashboard.
 
