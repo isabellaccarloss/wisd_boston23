@@ -40,4 +40,4 @@ What do you need in each file:
 
 Next steps:
 - Map other games' screens
-- Track the coverage behaviour
+- Track the coverage behavior
