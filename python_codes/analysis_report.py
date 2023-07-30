@@ -5,12 +5,14 @@
 # Installing package
 
 %pip install dash
+%pip install matplotlib tk
 
 # Importing libraries
 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 import math
 
 import dash
@@ -433,6 +435,118 @@ for i, count in enumerate(name_counts.values):
 # Display the plot
 plt.tight_layout()
 plt.show()
+
+
+# Static plot screen
+
+screenplus5_1['screenId'].unique()
+
+# Input here a screenId that you want to see in the plot
+
+screenid = 421003010001
+
+screenfilter = screenplus5_1.loc[screenplus5_1.groupby(['screenId'])['gameClock'].idxmax()]
+
+screenfilterid = screenfilter[screenfilter['screenId']==screenid]
+
+# Select the relevant columns for x and y values
+x_columns = ['homePlayer1_x', 'homePlayer2_x',  'homePlayer3_x', 'homePlayer4_x', 'homePlayer5_x', 'awayPlayer1_x', 'awayPlayer2_x', 'awayPlayer3_x', 'awayPlayer4_x', 'awayPlayer5_x']
+y_columns = ['homePlayer1_y','homePlayer2_y', 'homePlayer3_y',  'homePlayer4_y', 'homePlayer5_y', 'awayPlayer1_y', 'awayPlayer2_y', 'awayPlayer3_y', 'awayPlayer4_y', 'awayPlayer5_y']
+
+# Define the colors for each set of data
+line_colors = ['#98002E', '#98002E', '#98002E', '#98002E', '#98002E', '#007A33', '#007A33', '#007A33', '#007A33', '#007A33']
+
+# Create the line plot
+plt.figure(figsize=(10, 6))
+plt.xlim(-50,50)
+plt.ylim(-25,25)
+
+# Sample image (Replace 'image_path.png' with the path to your actual image)
+image_path = 'https://github.com/isabellaccarloss/wisd_boston23/raw/main/basketball_court.png'
+
+# Load the image using Pillow
+with urllib.request.urlopen(image_path) as url:
+    img = Image.open(url)
+    img_array = np.array(img)
+
+plt.imshow(img_array, extent=[-50,50,-25,25], aspect='auto')
+
+# Remove the values on both axes
+plt.xticks([])
+plt.yticks([])
+
+for x_col, y_col, color in zip(x_columns, y_columns, line_colors):
+    plt.plot(screenfilterid[x_col], screenfilterid[y_col], marker='o', linestyle='-', color=color)
+
+plt.title('Screen plot')
+plt.tight_layout()
+plt.show()
+
+
+# Animated plot screens
+
+screenplus5_1['screenId'].unique()
+
+# Input here a screenId that you want to see in the plot
+
+screenid = 421003010001
+
+%matplotlib tk
+
+# Select the relevant columns for x and y values
+x_columns = ['homePlayer1_x', 'homePlayer2_x',  'homePlayer3_x', 'homePlayer4_x', 'homePlayer5_x', 'awayPlayer1_x', 'awayPlayer2_x', 'awayPlayer3_x', 'awayPlayer4_x', 'awayPlayer5_x']
+y_columns = ['homePlayer1_y','homePlayer2_y', 'homePlayer3_y',  'homePlayer4_y', 'homePlayer5_y', 'awayPlayer1_y', 'awayPlayer2_y', 'awayPlayer3_y', 'awayPlayer4_y', 'awayPlayer5_y']
+
+# Define the colors for each set of data
+line_colors = ['#98002E', '#98002E', '#98002E', '#98002E', '#98002E', '#007A33', '#007A33', '#007A33', '#007A33', '#007A33']
+
+# Filter the DataFrame based on the desired time period
+filtered_df = screenplus5_1[screenplus5_1['screenId'] == screenid]
+
+# Create a figure and axis for the plot
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Set the x-axis and y-axis limits
+ax.set_xlim(-50,50)
+ax.set_ylim(-25,25)
+
+# Initialize empty line objects for each line with assigned colors
+lines = [ax.plot([], [], color=color, marker='.', markersize=8)[0] for color in line_colors]
+
+# Load the image using Pillow
+with urllib.request.urlopen(image_path) as url:
+    img = Image.open(url)
+    img_array = np.array(img)
+
+plt.imshow(img_array, extent=[-50,50,-25,25], aspect='auto')
+
+# Define the update function that will be called for each animation frame
+def update(frame):
+    # Get the current data based on the frame index
+    current_data = filtered_df.iloc[frame]
+
+    # Update the line data for each line
+    for i, (x_col, y_col) in enumerate(zip(x_columns, y_columns)):
+        x_values = current_data[x_col]
+        y_values = current_data[y_col]
+        lines[i].set_data(x_values, y_values)
+        
+    return lines
+
+# Create the animation with a 100-millisecond delay between frames
+animation = FuncAnimation(fig, update, frames=len(filtered_df), interval=50, blit=True)
+
+# Add labels and title
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Line Chart Animation')
+
+# Show the plot
+plt.show()
+
+
+
+# Dashboard
 
 # Create a DataFrame from the data
 df = pd.DataFrame(screenplus5_2)
