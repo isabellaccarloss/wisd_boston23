@@ -32,6 +32,7 @@ What do you need in each file:
 2. analysis_report.py
   - Install packages:
     - dash
+    - matplotlib tk
   - two tables generated in the previous code:
     - screenplus5_1
     - screenplus5_2
