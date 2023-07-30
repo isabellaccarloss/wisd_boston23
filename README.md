@@ -15,13 +15,14 @@ The project is divided in four parts:
   - You credentials to access this data
 2. Importing NBA API dataset
   - Install nba_api
-3. Importing mapped screens 
-  - Import .xlsx file from this repository (screens_mapping.xlsx)
+3. Downloading mapped screens 
+  - Download .xlsx file from this repository (screens_mapping.xlsx)
 4. Data manipulation/evaluation
 
-You need to run the files in the same order:
-1. aws_data_import.py (data_import_py folder)
-2. 
+You need to run the files in the same order (data_import_py folder):
+1. aws_data_import.py
+2. nba_api_import.py
+3. data_screen_analysis
 
 Next steps:
 - Map other games' screens
