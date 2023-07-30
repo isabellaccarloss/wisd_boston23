@@ -20,6 +20,7 @@ The project is divided in four parts:
 4. Data manipulation/evaluation
 
 You need to run the files in the same order (data_import_py folder):
+- Be aware that if you are running the codes separately, you need to download and upload each table that are marked as opitional.
 1. aws_data_import.py
 2. nba_api_import.py
 3. data_screen_analysis
