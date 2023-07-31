@@ -1,0 +1,30 @@
+Submission form:
+
+- Introduction
+The focus of the project is studying screens and coverages and how they significantly influence the dynamics of the games under evaluation.
+
+- Purpose & Motivation
+As some teams may already be effectively using this play, others might encounter additional challenges while creating effective strategies 
+and determining appropriate responses when facing it against opposing teams.
+The analysis and dashboard made in this project aim to help/guide coaches and staff to chose the best approach while facing and making screens. 
+The found results can provide valuable insights while evaluating screen duos, players, type of shots resulted from screens and other events that may occur. 
+
+- Solution
+To empower coaches/staff with relevant information, we developed an analysis and a dashboard based in historical data to evaluate the behavior of 
+teams and players when a screen occur. 
+
+- Context for how and when to use the application/recommendation
+This project serves as a valuable tool for coaches/staff, enabling them to conduct a self evaluation of their own screens. Additionally, it can 
+support the evaluation of behavior and screens performance of the opposite team, so it is possible to build/choose defensive techniques that 
+effectively counter these strategies.
+
+- Difficulties & Challenges faced during the design and/or development process
+1. Lack of mapped data for screens:
+- The team had to watch the games to track every screen, what caused a delay in the project. For that reason, by now, the analysis contain only 
+one game evaluation. But, once we have this data, we just need to input it in the existent code.
+- After manually tracking and inputting the screens, we had to run a code to make sure we were getting the exactly time the screen happens to 
+guarantee the accuracy of the data.
+
+- Next steps (if applicable)
+1. Map other games' screens (on going)
+2. Track the coverage behavior (on going)
